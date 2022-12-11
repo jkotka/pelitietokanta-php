@@ -1,0 +1,7 @@
+img/cover/*.jpg
+!img/cover/.gitkeep
+
+img/cover/thumbnails/*.jpg
+!img/cover/thumbnails/.gitkeep
+
+mysql_config.php

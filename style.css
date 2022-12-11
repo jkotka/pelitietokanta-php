@@ -1,0 +1,954 @@
+/* ---------- DESKTOP MODE ---------- */
+
+/* Include border & padding in element width/height */
+html {
+    box-sizing: border-box;
+    scrollbar-color: #aaa #f5f5f5;
+}
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    background-color: #fff;
+    margin: 0;
+    overflow-y: scroll;
+}
+/* Inherit these to all elements */
+*,
+*:before,
+*:after {
+    font-family: inherit;
+    font-size: inherit;
+    box-sizing: inherit;
+}
+
+/* ----- Outline ----- */
+
+/* Replace outline with box-shadow */
+*:focus {
+    outline: 2px dotted transparent;
+    box-shadow: 0 3px 0 #ccc;
+}
+/* Darker shadow for dark background */
+#search:focus,
+a.nav:focus,
+a.white:focus {
+    box-shadow: 0 3px 0 #777;
+}
+/* Shadow only for text part (span) in latest table links */
+.latest tbody td a:focus {
+    box-shadow: none;
+}
+.latest tbody td a:focus span {
+    box-shadow: 0 2px 0 #ccc;
+}
+/* Remove shadow for links when active/hovering */
+a:hover,
+a:active,
+.latest tbody td a:hover span,
+.latest tbody td a:active span {
+    box-shadow: none;
+}
+
+/* ----- Menu ----- */
+
+.menu {
+    min-width: 320px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #fff;
+    background-color: #222;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+form.search {
+    width: 100%;
+    max-width: 25vw;
+    margin: 0 5px;
+}
+input#search {
+    width: 100%;
+    height: unset;
+    margin: 0;
+    border: none;
+}
+
+/* ----- Main content ----- */
+
+/* Main container */
+.content {
+    min-width: 320px;
+    color: #000;
+    background-color: #fff;
+    padding: 10px 15px;
+}
+/* Index page container */
+.index-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+/* Headers */
+h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px 0;
+    text-shadow: 1px 2px 1px #ddd;
+}
+h2 {
+    font-size: 14px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #444;
+    margin: 0 0 2px 0;
+}
+/* Toggle */
+.toggle-label {
+    color: #fff;
+    background-color: #222;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding: 4px 8px;
+    clear: left;
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.toggle-label:hover {
+    color: #ccc;
+}
+.filter-label {
+    color: #111;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    padding: 6px 9px 6px 1px;
+    border-top: 1px solid #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.toggle-check {
+    display: none;
+}
+.toggle-check:checked + .hidden {
+    display: block;
+}
+/* Hidden content (opens under toggle) */
+.hidden {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #bbb;
+    display: none;
+}
+/* Platform tag (same title on other plats/medias) */
+.platform-tag {
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: left;
+}
+.platform-tag .selected-tag {
+    color: #fff;    
+    background-color: #666;
+    text-shadow: 1px 1px 1px #444;
+}
+.platform-tag a {
+    color: #eee;
+    background-color: #333;
+    margin: -4px 4px 11px 0;
+    padding: 2px 4px;
+    border: 1px solid #555;
+    border-radius: 3px;
+}
+.platform-tag a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+/* Total results/hours/sums etc. for list pages */
+.total {
+    font-size: 14px;
+    padding: 7px 0;
+    border-top: 1px solid #bbb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Settings page */
+.lang-sel,
+.export-db {
+    padding: 8px 0;
+    border-top: 1px solid #bbb;
+}
+.export-db {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #bbb;
+}
+/* Truncate */
+.truncate {
+    max-width: 15vw;
+    white-space: nowrap!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis;
+}
+/* Message */
+.message {
+    color: #005a9c;
+    background-color: #bde5f8;
+    padding: 8px 15px;
+    border-bottom: 1px solid #8ab9f1;
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+}
+.error {
+    color: firebrick;
+    background-color: pink;
+    border-bottom: 1px solid lightcoral;
+}
+.success {
+    color: green;
+    background-color: #dff2bf;
+    border-bottom: 1px solid #93c572;
+}
+.message i {
+    margin-right: 5px;
+}
+.message label {
+    color: inherit;
+    margin: 0 0 0 5px;
+    cursor: pointer;
+}
+.message label i {
+    margin: 0;
+}
+#message-check,
+#message-check:checked + .message {
+    display: none;
+}
+/* Various settings and alignments */
+.uppercase {
+    text-transform: uppercase;
+}
+.lowercase {
+    text-transform: lowercase;
+}
+.center {
+    text-align: center;
+}
+.top {
+    vertical-align: top;
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+/* Cancel/delete button color */
+.red {
+    background-color: firebrick!important;
+}
+/* Yes/no (owned/beaten) icon colors */
+.yes {
+    color: green;
+}
+.no {
+    color: crimson;
+}
+/* Additional colors */
+.grey {
+    color: #999;
+}
+.dark-grey {
+    color: #444;
+}
+/* Dotted underline */
+.dotted {
+    text-decoration: underline dotted 1px #777;
+}
+/* JQuery tooltip */
+.ui-tooltip-content {
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #111;
+}
+.ui-tooltip {
+    color: #eee!important;
+    background-color: #333!important;
+    border: 1px solid #666!important;
+    border-radius: 5px!important;
+    box-shadow: none!important;
+    opacity: 95%;
+}
+/* JQuery autocomplete */
+.ui-autocomplete li {
+    border-bottom: 1px solid #ddd;
+}
+/* Hide mobile elements in desktop mode */
+.menu-label,
+.menu-check,
+.mobile-sort,
+.mobile-label {
+    display: none;
+}
+
+/* ----- Links ----- */
+
+a {
+    color: #1f2f2f;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    text-decoration-color: #777;
+}
+.nav,
+.white {
+    color: #fff;
+    text-decoration: none;
+}
+.nav {
+    margin: 0 5px;
+}
+.nav:hover,
+.white:hover {
+    color: #ccc;
+    text-decoration: none;
+}
+.advanced-edit {
+    margin-top: 7px;
+    float: right;
+}
+.advanced-edit i,
+.hash i {
+    margin-left: 5px;
+}
+
+/* ----- Title cover ----- */
+
+/* Cover container */
+.titlecover {
+    width: 30%;
+    max-width: 350px;
+    color: #888;
+    margin: 0 10px 5px 0;
+    float: left;
+    position: relative;
+}
+.titlecover label {
+    color: #888;
+    margin: 0;
+}
+/* Cover image & thumbnail */
+.titlecover img {
+    width: 100%;
+    box-shadow: 0 0 5px #ccc;
+    cursor: pointer;
+}
+.thumbnail {
+    width: 80px;
+    box-shadow: 0 0 5px #ccc;
+}
+/* Cover upload form */
+.img-form {
+    width: 100%;
+    font-size: 14px;
+    background-color: #333;
+    margin-bottom: 0;
+    padding: 10px 5px;
+    border-bottom: 1px solid #444;
+    position: absolute;
+        top: 0;
+        left: 0;
+    text-shadow: 1px 1px 1px #111;
+    opacity: 95%;
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+}
+/* Set "opacity: 0" instead of "display: none" to show browser's required field notification */
+.img-form input[type] {
+    opacity: 0;
+    position: absolute;
+        top: 0;
+        left: 0;
+    z-index: -1;
+}
+#img-check:checked + .img-form {
+    display: flex;
+}
+.change-img,
+.remove-img,
+.img-submit {
+    min-width: unset;
+    font-weight: normal;
+    color: #aaa;
+    background-color: transparent;
+    margin: 0;
+    padding: 3px 5px;
+    box-shadow: none;
+}
+/* Change/remove cover */
+.remove-img a {
+    color: #aaa;
+    text-decoration: none;
+}
+.change-img:hover,
+.remove-img a:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+/* ----- Tables ----- */
+
+/* Common table settings */
+table {
+    margin: 0 0 10px 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+td {
+    padding: 3px 6px;
+    border-bottom: 1px solid #e1e1e1;
+}
+table thead td {
+    color: #fff;
+    background-color: #222;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 1px;
+}
+/* Even/odd row colors */
+tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+/* Specific table settings */
+#game-stats,
+#purchase-stats {
+    width: 20%;
+}
+/* Latest titles */
+.latest {
+    width: 60%;
+    margin-bottom: 0;
+}
+.latest tbody td {
+    width: 12%;
+    font-size: 13px;
+    line-height: normal;
+    background-color: #fff;
+    padding: 10px 5px;
+    border-bottom: none;
+}
+/* Latest titles platform */
+.latest tbody td div {
+    width: 80px;
+    font-size: 10px;
+    line-height: 13px;
+    word-break: break-all;
+    color: #fff;
+    background-color: #666;
+    margin: 0 auto;
+    margin-bottom: 2px;
+    padding: 1px;
+    border: 1px solid #555;
+    border-radius: 3px;
+    text-shadow: 1px 1px 1px #444;
+}
+/* Latest titles name (max 2 rows) */
+.latest tbody td span {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+}
+/* Latest titles link - platform not underlined on hover */
+.latest tbody td a:hover {
+    text-decoration: none;
+}
+/* Latest titles link - Underline text part (span) only */
+.latest tbody td a:hover span {
+    text-decoration: underline;
+}
+/* Full width tables */
+.titlelist,
+.deletelist {
+    width: 100%;
+}
+/* Align certain cells to left */
+.titlelist .title,
+.titlelist .platform,
+.titlelist .mediatype,
+.titlelist .titletype,
+.titlelist .price {
+    text-align: left;
+}
+.titlelist tbody tr:hover {
+    background-color: #e2e2e2;
+}
+/* Various cell widths (1% makes table full width) */
+.min-width {
+    width: 1%;
+    white-space: nowrap;
+}
+.med-width {
+    width: 30%;
+}
+.max-width {
+    width: 100%;
+}
+.no-data {
+    width: 100vw;
+}
+
+/* ----- Forms ----- */
+
+/* Common form settings */
+form {
+    margin-bottom: 10px;
+}
+label {
+    color: #444;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+input[type],
+select,
+textarea {
+    height: 2em;
+    background-color: #f5f5f5;
+    margin: 0 5px 10px 0;
+    padding: 3px 5px;
+    border: 1px solid #999;
+    border-radius: 1px;
+}
+textarea {
+    width: 100%;
+    height: 120px;
+    resize: none;
+    display: block;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    height: 13px;
+    accent-color: #222;
+    vertical-align: middle;
+    margin-bottom: 0;
+    position: relative;
+        bottom: 1px;
+}
+input[type="submit"],
+button,
+.button {
+    min-width: 85px;
+    font-weight: bold;
+    text-align: center;
+    line-height: normal;
+    color: #fff;
+    background-color: green;
+    margin: 0 5px 5px 0;
+    padding: 6px;
+    border: none;
+    border-radius: 2px;
+    text-shadow: 1px 1px 1px #111;
+    display: inline-block;
+    cursor: pointer;
+}
+input[type="submit"]:hover,
+button:hover,
+.button:hover {
+    color: #ccc;
+    text-decoration: none;
+}
+/* Add new (platform/mediatype etc.) for forms */
+.add {
+    margin: 0 7px 0 -5px;
+}
+/* Specific form settings */
+.filter {
+    width: 100%;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.multiselect,
+.filter select {
+    vertical-align: top;
+}
+.multiselect {
+    height: unset;
+}
+#filter-title {
+    max-width: 125px;
+}
+.filter-submit {
+    min-width: unset;
+    color: #fff;
+    background-color: #222;
+    margin-bottom: 10px;
+    padding: 6px 9px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.filter-submit:hover {
+    color: #ccc;
+}
+.records-per-page {
+    white-space: nowrap;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+.records-per-page select {
+    text-align: center;
+    margin: 0;
+}
+.records-submit {
+    min-width: unset;
+    color: #fff;
+    background-color: #222;
+    margin: 0 0 0 3px;
+    padding: 6px 9px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.records-submit:hover {
+    color: #ccc;
+}
+#title,
+#edition {
+    width: 100%;
+}
+#hours,
+#price,
+#parent_id {
+    max-width: 85px;
+}
+/* Settings form submit when delete checkbox checked */
+.del-check:checked + .submit {
+    background-color: firebrick;
+}
+
+/* ----- Pagination ----- */
+
+.pagination {
+    font-size: 14px;
+    text-align: right;
+    margin: 10px 0;
+}
+.pagination a,
+.pagenumber {
+    color: #fff;
+    background-color: #222;
+    text-decoration: none;
+    margin-left: 1px;
+    padding: 6px 11px;
+    border-radius: 2px;
+    display: inline-block;
+}
+.pagination a:hover {
+    color: #ccc;
+}
+.pagenumber {
+    font-weight: bold;
+    background-color: #777;
+}
+
+/* ----- Breadcrumbs ----- */
+
+.breadcrumbs,
+.breadcrumbs a {
+    font-size: 14px;
+    color: #444;
+    margin: 0 0 5px 0;
+}
+.breadcrumbs a:hover {
+    color: #222;
+}
+.breadcrumbs i {
+    margin: 0 5px;
+}
+
+/* ---------- MOBILE MODE (<960px) ---------- */
+
+@media only screen and (max-width: 959px) {
+    .content {
+        width: 100%;
+        padding: 5px;
+    }
+    .menu {
+        font-size: 18px;
+        padding: 5px 0 0 0;
+        flex-wrap: wrap;
+    }
+    h1 {
+        font-size: 24px;
+        margin: 0 0 8px 0;
+    }
+    td,
+    .toggle-label {
+        padding: 6px 8px!important;
+    }
+    /* Truncate */
+    .truncate {
+        max-width: 100vw;
+    }
+    /* Message */
+    .message {
+        padding: 7px;
+    }
+    .message i {
+        margin-right: 5px!important;
+    }
+    /* Dotted normal links for better visibility */
+    .latest tbody td a span,
+    .latest tbody td a:hover span,
+    .lang-sel a,
+    .lang-sel a:hover,
+    .export-db a,
+    .export-db a:hover,
+    #game-stats tbody td a,
+    #purchase-stats tbody td a {
+        text-decoration: underline dotted 1px #777;
+    }
+    a.nav {
+        padding: 10px 2px;
+    }
+    /* Search to the top */
+    .search {
+        max-width: none!important;
+        order: -1;
+    }
+    #search {
+        padding: 8px!important;
+    }
+    /* Hide desktop filter form */
+    .filter {
+        border-top: none!important;
+        padding-top: 0!important;
+        display: none;
+    }
+    .filter-submit {
+        width: 85px;
+    }
+    /* Disable multiselect scroll */
+    .multiselect {
+        overflow-y: hidden;
+    }
+    /* Sorting for mobile mode */
+    .mobile-sort {
+        font-size: 15px;
+        margin: 0 0 3px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+    }
+    .mobile-sort span {
+        background-color: #222;
+        margin: 0 4px 4px 0;
+        padding: 2px 4px;
+        border: 1px solid #555;
+        border-radius: 3px;
+    }
+    label,
+    .mobile-label {
+        white-space: nowrap;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+    .mobile-header {
+        text-align: center!important;
+    }
+    .records-per-page {
+        display: none;
+    }
+    /* Index page table orders */
+    #game-stats {
+        width: 100%!important;
+        order: 2;
+    }
+    #purchase-stats {
+        width: 100%!important;
+        order: 4;
+    }
+    .added {
+        order: 1;
+    }
+    .played {
+        order: 3;
+    }
+    .purchased {
+        order: 5;
+    }
+    .latest {
+        width: 100%!important;
+    }
+    .latest tbody td {
+        padding: 10px 3px!important;
+    }
+    /* Form elements to 100% width */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%!important;
+        max-width: none!important;
+        margin-right: unset;
+    }
+    .breadcrumbs,
+    .breadcrumbs a {
+        font-size: 15px;
+        margin: 0 0 2px 0;
+    }
+    /* Hide add (platform/mediatype etc.) */
+    .add {
+        display: none;
+    }
+    .titlecover {
+        width: 100%;
+        float: none;
+    }
+
+    /* ----- Mobile tables ----- */
+
+    /* Hide thead section (except index page) */
+    thead:not(#game-stats thead, .latest thead, #purchase-stats thead) {
+        display: none;
+    }
+    /* Display block for tables (except index page) */
+    table:not(.latest, #game-stats, #purchase-stats),
+    tbody:not(.latest tbody, #game-stats tbody, #purchase-stats tbody),
+    tr:not(.latest tr, #game-stats tr, #purchase-stats tr) {
+        display: block;
+    }
+    /* Display block for cells (except index page and .no-data) */
+    td:not(.latest td, #game-stats td, #purchase-stats td, .no-data) {
+        width: unset;
+        text-align: right;
+        white-space: unset;
+        border: none;
+        border-bottom: 1px solid #e1e1e1;
+        display: block;
+    }
+    /* Even/odd "row" colors */
+    .titlelist td:nth-child(even),
+    .titledetails td:nth-child(even),
+    .deletelist td:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+    .titlelist td:nth-child(odd),
+    .titledetails td:nth-child(odd),
+    .deletelist td:nth-child(odd) {
+        background-color: #fafafa;
+    }
+    /* Hide row number */
+    .titlelist td:first-child {
+        display: none!important;
+    }
+    /* Header cells */
+    .titlelist td:nth-child(2),
+    .titledetails tbody tr td:first-child,
+    .deletelist tbody tr td:first-child {
+        font-weight: bold;
+        color: #fff;
+        background-color: #222;
+    }
+    /* Dotted links for header cells */
+    .titlelist td:nth-child(2) a,
+    .titledetails tbody tr td:first-child a,
+    .deletelist tbody tr td:first-child a {
+        color: #fff;
+        text-decoration: underline dotted 1px #ccc;
+    }
+    /* Get header text from data-title and add colon & space (except .mobile-header and .no-data) */
+    .titlelist td:not(.mobile-header):before,
+    .titledetails td:not(.no-data, .mobile-header):before,
+    .deletelist td:not(.mobile-header):before {
+        font-weight: bold;
+        white-space: nowrap;
+        content: attr(data-title) ":\00a0";
+        float: left;
+    }
+    /* If cell is empty, show " - " (with spaces) */
+    .titlelist td:empty:after,
+    .titledetails td:empty:after,
+    .deletelist td:empty:after {
+        content: "\00a0-\00a0";
+    }
+    /* Index page tables */
+    #game-stats tr td:first-child,
+    #purchase-stats tr td:first-child {
+        font-weight: bold;
+    }
+    /* Add colon and space after header text */
+    #game-stats tr td:first-child:after,
+    #purchase-stats tr td:first-child:after {
+        content: ":\00a0";
+    }
+    #game-stats tr td:nth-child(2),
+    #purchase-stats tr td:nth-child(2) {
+        text-align: right;
+    }
+}
+
+/* ----- Collapse menu (<768px) ----- */
+
+@media only screen and (max-width: 767px) {
+    #search {
+        margin-bottom: 2px!important;
+    }
+    a.nav {
+        width: 100%;
+        text-align: left;
+        padding: 8px 2px;
+        border-top: 1px solid #444;
+        display: none;
+    }
+    .menu-label {
+        color: #eee;
+        margin: 0 5px;
+        padding: 8px 2px;
+        padding-right: 8px;
+        display: flex;
+        flex-basis: 100%;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .menu-check:checked ~ .nav {
+        display: block;
+    }
+}
+
+/* ----- Show 4 latest titles (<640px) ----- */
+
+@media only screen and (max-width: 639px) {
+    .latest tbody td:nth-child(1n+5) {
+        display: none;
+    }
+}
+
+/* ----- Show 3 latest titles (<480px) ----- */
+
+@media only screen and (max-width: 479px) {
+    .latest tbody td:nth-child(1n+4) {
+        display: none;
+    }
+}
